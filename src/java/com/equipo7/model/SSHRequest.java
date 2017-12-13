@@ -1,6 +1,5 @@
 package com.equipo7.model;
 
-import com.equipo7.model.SwitchCisco;
 import java.io.*;
 
 import com.jcraft.jsch.*;

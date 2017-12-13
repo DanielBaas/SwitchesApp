@@ -21,9 +21,11 @@
             <props>
                 <prop key="index.htm">indexController</prop>
                 <prop key="switches.htm">switchesController</prop>
+                <prop key="interfaces.htm">interfacesController</prop>
                 <prop key="addSwitch.htm">addSwitchController</prop>
                 <prop key="editSwitch.htm">editSwitchController</prop>
                 <prop key="deleteSwitch.htm">deleteSwitchController</prop>
+                <prop key="refresh.htm">refreshController</prop>
             </props>
         </property>
     </bean>
@@ -34,9 +36,11 @@
           p:suffix=".jsp" />
     
     <bean name="switchesController" class="com.equipo7.controller.SwitchesController" />
+    <bean name="interfacesController" class="com.equipo7.controller.InterfacesController" />
     <bean name="addSwitchController" class="com.equipo7.controller.AddSwitchController" />
     <bean name="editSwitchController" class="com.equipo7.controller.EditSwitchController" />
     <bean name="deleteSwitchController" class="com.equipo7.controller.DeleteSwitchController" />
+    <bean name="refreshController" class="com.equipo7.controller.RefreshController" />
 
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"

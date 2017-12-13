@@ -1,8 +1,13 @@
 package com.equipo7.controller;
 
 import com.equipo7.model.DBConnection;
+import com.equipo7.model.Reports;
 import com.equipo7.model.SwitchCisco;
+import com.equipo7.model.SwitchDao;
+import com.equipo7.model.SwitchInterface;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -41,11 +46,18 @@ public class AddSwitchController {
             SessionStatus status
         ) throws ParseException 
     {   
-        this.jdbcTemplate.update("insert into SwitchCisco (user, host, port, pass) values(?, ?, ?, ?)",
-                switchCisco.getUser(),
-                switchCisco.getHost(),
-                switchCisco.getPort(),
-                switchCisco.getPass());
+        Reports report = new Reports();
+        List<SwitchInterface> interfaces = new ArrayList<SwitchInterface>();
+        SwitchDao dao = new SwitchDao();
+        
+        switchCisco = report.requestSwitchInfo(switchCisco);
+        dao.insertSwitch(switchCisco);
+        
+        interfaces = report.requestSwitchInterfacesInfo(switchCisco);
+        
+        for (SwitchInterface si : interfaces) {
+            dao.insertInterface(si);
+        }
         
         return new ModelAndView("redirect:/switches.htm");
     }

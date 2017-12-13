@@ -1,9 +1,5 @@
 package com.equipo7.model;
 
-import com.equipo7.model.SwitchCisco;
-import com.equipo7.model.SwitchDao;
-import com.equipo7.model.SwitchInterface;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,12 +8,6 @@ import java.util.List;
 
 
 public class Reports {
-
-    private List<SwitchCisco> switches;
-    
-    public Reports() {
-        this.switches = new ArrayList<SwitchCisco>();
-    }
 
     private List<SwitchInterface> setInterface(String switchFile) {
         String linea = "";
@@ -96,34 +86,26 @@ public class Reports {
         return available;
     }
     
-    public void addNewSwitch(SwitchCisco switchCisco) {
-        this.switches.add(switchCisco);
+    public SwitchCisco requestSwitchInfo(SwitchCisco switchCisco) {
+        switchCisco = showVersion(switchCisco);
+        switchCisco.setAvailability(getSwitchAvailability(switchCisco.getHost()));
+        
+        return switchCisco;       
     }
     
-    public void requestSwitchesInfo() {
-        int numberOfSwitches = switches.size();
+    public List<SwitchInterface> requestSwitchInterfacesInfo(SwitchCisco switchCisco) {
+        List<SwitchInterface> interfaces = new ArrayList<SwitchInterface>();
         SwitchDao dao = new SwitchDao();
-  
-        for (int i = 0; i < numberOfSwitches; i++) {
-            SwitchCisco sw = switches.get(i);
-            List<SwitchInterface> interfaces = new ArrayList<SwitchInterface>();
-            
-            switches.set(i, showVersion(sw));
-            
-            sw = switches.get(i);
-            
-            dao.insertSwitch(sw);
-            
-            interfaces = showInterfaceBrief(sw);
-            
-            int switchId = dao.findSwitchByIP(sw.getHost()).getPk();
-            
-            for (int j = 0; i < interfaces.size(); j++) {
-                interfaces.get(j).setSwitchCisco(switchId);
-            }
-            
-            switches.get(i).setAvailability(getSwitchAvailability(sw.getHost()));
-        }  
+        
+        interfaces = showInterfaceBrief(switchCisco);
+
+        int switchId = dao.findSwitchByIP(switchCisco.getHost()).getPk();
+
+        for (int i = 0; i < interfaces.size(); i++) {
+            interfaces.get(i).setSwitchCisco(switchId);
+        }
+        
+        return interfaces;
     }
 
 }

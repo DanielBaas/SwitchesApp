@@ -24,7 +24,12 @@
                 
                 <div class="container">
                     <div class="row" style="padding-top: 3%;" align="left">
-                        <a href="<c:url value="addSwitch.htm"/>" class="btn btn-success">Agregar</a>
+                        <div class="col-sm-4">
+                            <a href="<c:url value="addSwitch.htm"/>" class="btn btn-success">Agregar</a>
+                        </div>                        
+                        <div class="col-sm-4">
+                            <a href="<c:url value="refresh.htm"/>" class="btn btn-success">Refrescar</a>
+                        </div>
                     </div>
                 </div>
                 
@@ -42,7 +47,7 @@
                                 </tr>
                             </thead>
                             <tbody>    
-                                <c:forEach items="${switches}" var="switch">
+                                <c:forEach var="switch" items="${switches}">
                                     <tr>
                                         <td><c:out value="${switch.user}" /></td>
                                         <td><c:out value="${switch.host}" /></td>
@@ -53,7 +58,7 @@
                                         <td>
                                             <a href="<c:url value="editSwitch.htm?id=${switch.pk}"/>" class="btn btn-warning">Editar</a>
                                             <a href="<c:url value="deleteSwitch.htm?id=${switch.pk}"/>" class="btn btn-danger">Eliminar</a>
-                                            <a href="<c:url value="switchIntarfaces.htm?id=${switch.pk}"/>" class="btn btn-danger">Interfaces</a>
+                                            <a href="<c:url value="interfaces.htm?id=${switch.pk}"/>" class="btn btn-danger">Interfaces</a>
                                         </td>
                                         <td></td>
                                     </tr>
