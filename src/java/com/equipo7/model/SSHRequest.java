@@ -1,3 +1,5 @@
+package com.equipo7.model;
+
 import com.equipo7.model.SwitchCisco;
 import java.io.*;
 
@@ -48,7 +50,10 @@ public class SSHRequest {
     }
 
     public void pingCommand(String ip, String switchFile) {
-
+        String pingcommand = "ping ";
+        JSch jsch = new JSch();
+        
+        
     }
 
 }

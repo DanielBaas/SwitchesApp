@@ -1,18 +1,31 @@
 package com.equipo7.model;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
+
 import java.io.IOException;
 
+@DatabaseTable(tableName = "SwitchCisco")
 public class SwitchCisco {
 
+    @DatabaseField(id = true, columnName = "pk")
     private int pk;
+    @DatabaseField(canBeNull = true, columnName = "user")
     private String user;
+    @DatabaseField(canBeNull = true, columnName = "host")
     private String host;
+    @DatabaseField(canBeNull = true, columnName = "port")
     private int port;
+    @DatabaseField(canBeNull = true, columnName = "pass")
     private String pass;
+    @DatabaseField(canBeNull = true, columnName = "software")
     private String software;
+    @DatabaseField(canBeNull = true, columnName = "version")
     private String version;
+    @DatabaseField(canBeNull = true, columnName = "isAvailable")
     private boolean isAvailable;
     
     public SwitchCisco() {
@@ -73,10 +86,6 @@ public class SwitchCisco {
                 ex.printStackTrace();
             }
         }
-    }
-
-    public void setAvailabity(String switchFile) {
-
     }
 
     public int getPk() {

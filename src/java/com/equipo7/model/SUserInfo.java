@@ -1,3 +1,5 @@
+package com.equipo7.model;
+
 import com.jcraft.jsch.UserInfo;
 
 public class SUserInfo implements UserInfo {

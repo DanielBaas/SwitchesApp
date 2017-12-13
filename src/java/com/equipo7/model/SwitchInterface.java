@@ -1,14 +1,26 @@
 package com.equipo7.model;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName = "SwitchInterface")
 public class SwitchInterface {
 
+    @DatabaseField(id = true, columnName = "pk")
     private int pk;
+    @DatabaseField(canBeNull = true, columnName = "interfaceType")
     private String interfaceType;
+    @DatabaseField(canBeNull = true, columnName = "ip")
     private String ip;
+    @DatabaseField(canBeNull = true, columnName = "okStatus")
     private String okStatus;
+    @DatabaseField(canBeNull = true, columnName = "method")
     private String method;
+    @DatabaseField(canBeNull = true, columnName = "status")
     private String status;
+    @DatabaseField(canBeNull = true, columnName = "protocol")
     private String protocol;
+    @DatabaseField(canBeNull = true, columnName = "switchCisco")
     private int switchCisco;
 
     public SwitchInterface() {
