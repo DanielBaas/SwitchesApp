@@ -1,3 +1,5 @@
+package com.equipo7.model;
+
 public class SwitchInterface {
 
     private int pk;
@@ -7,15 +9,9 @@ public class SwitchInterface {
     private String method;
     private String status;
     private String protocol;
+    private int switchCisco;
 
     public SwitchInterface() {
-        this.pk = -1;
-        this.interfaceType = "";
-        this.ip = "";
-        this.okStatus = "";
-        this.method = "";
-        this.status = "";
-        this.protocol = "";
     }
 
     public void setInterfaceData(String[] switchData) {
@@ -144,9 +140,12 @@ public class SwitchInterface {
         this.protocol = protocol;
     }
 
-    @Override
-    public String toString() {
-        return "1:" + interfaceType + "\t2:" + ip + "\t3:" + okStatus + "\t4:" + method + "\t5:" + status + "\t6:" + protocol;
+    public int getSwitchCisco() {
+        return switchCisco;
+    }
+
+    public void setSwitchCisco(int switchCisco) {
+        this.switchCisco = switchCisco;
     }
 
 }

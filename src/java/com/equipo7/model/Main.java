@@ -1,3 +1,4 @@
+import com.equipo7.model.SwitchCisco;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 

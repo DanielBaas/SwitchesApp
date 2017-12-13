@@ -20,6 +20,10 @@
         <property name="mappings">
             <props>
                 <prop key="index.htm">indexController</prop>
+                <prop key="switches.htm">switchesController</prop>
+                <prop key="addSwitch.htm">addSwitchController</prop>
+                <prop key="editSwitch.htm">editSwitchController</prop>
+                <prop key="deleteSwitch.htm">deleteSwitchController</prop>
             </props>
         </property>
     </bean>
@@ -28,12 +32,13 @@
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
+    
+    <bean name="switchesController" class="com.equipo7.controller.SwitchesController" />
+    <bean name="addSwitchController" class="com.equipo7.controller.AddSwitchController" />
+    <bean name="editSwitchController" class="com.equipo7.controller.EditSwitchController" />
+    <bean name="deleteSwitchController" class="com.equipo7.controller.DeleteSwitchController" />
 
-    <!--
-    The index controller.
-    -->
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
-
 </beans>
