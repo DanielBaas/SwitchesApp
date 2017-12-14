@@ -19,7 +19,7 @@ public class SwitchDao {
     
     final String URL = "jdbc:mysql://localhost/CiscoSwitches";
     final String USERNAME = "root";
-    final String PASSWORD = "root";
+    final String PASSWORD = "cisco";
     
     public void insertSwitch(SwitchCisco switchCisco) {
         try {
