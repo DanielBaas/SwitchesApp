@@ -47,18 +47,18 @@
                                 </tr>
                             </thead>
                             <tbody>    
-                                <c:forEach var="switch" items="${switches}">
+                                <c:forEach var="switchCisco" items="${switches}">
                                     <tr>
-                                        <td><c:out value="${switch.user}" /></td>
-                                        <td><c:out value="${switch.host}" /></td>
-                                        <td><c:out value="${switch.port}" /></td>
-                                        <td><c:out value="${switch.software}" /></td>
-                                        <td><c:out value="${switch.version}" /></td>
-                                        <td><c:out value="${switch.isAvailable}" /></td>
+                                        <td><c:out value="${switchCisco.user}" /></td>
+                                        <td><c:out value="${switchCisco.host}" /></td>
+                                        <td><c:out value="${switchCisco.port}" /></td>
+                                        <td><c:out value="${switchCisco.software}" /></td>
+                                        <td><c:out value="${switchCisco.version}" /></td>
+                                        <td><c:out value="${switchCisco.isAvailable}" /></td>
                                         <td>
-                                            <a href="<c:url value="editSwitch.htm?id=${switch.pk}"/>" class="btn btn-warning">Editar</a>
-                                            <a href="<c:url value="deleteSwitch.htm?id=${switch.pk}"/>" class="btn btn-danger">Eliminar</a>
-                                            <a href="<c:url value="interfaces.htm?id=${switch.pk}"/>" class="btn btn-danger">Interfaces</a>
+                                            <a href="<c:url value="editSwitch.htm?id=${switchCisco.pk}"/>" class="btn btn-warning">Editar</a>
+                                            <a href="<c:url value="deleteSwitch.htm?id=${switchCisco.pk}"/>" class="btn btn-danger">Eliminar</a>
+                                            <a href="<c:url value="interfaces.htm?id=${switchCisco.pk}"/>" class="btn btn-danger">Interfaces</a>
                                         </td>
                                         <td></td>
                                     </tr>
