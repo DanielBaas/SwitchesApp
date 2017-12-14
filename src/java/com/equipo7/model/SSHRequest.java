@@ -6,7 +6,7 @@ import com.jcraft.jsch.*;
 
 public class SSHRequest {
 
-    public void switchCommand(String command, String switchFile, SwitchCisco switchCisco) {
+    public void switchCommand(String command, String pingFile, SwitchCisco switchCisco) {
 
         String user = switchCisco.getUser();
         String host = switchCisco.getHost();
@@ -23,10 +23,53 @@ public class SSHRequest {
             session.setPassword(pass);
             session.connect();
 
-            ChannelExec channelExec = (ChannelExec)session.openChannel("exec");
+            ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
             InputStream in = channelExec.getInputStream();
 
             channelExec.setCommand(switchCommand);
+            channelExec.connect();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            String linea = null;
+            PrintWriter fileOut = new PrintWriter(pingFile); // Aquí le pasas el nombre del archivo
+
+            while ((linea = reader.readLine()) != null) {
+                fileOut.println(linea); // Aquí estas escribiendo linea por linea no???
+                channelExec.disconnect();
+                session.disconnect();
+            }
+
+            fileOut.close();
+        } catch (JSchException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void pingCommand(String ip, String switchFile, SwitchCisco switchCisco) {
+        
+        String pingcommand = "ping " + ip;
+        
+        String user = switchCisco.getUser();
+        String host = switchCisco.getHost();
+        int port = switchCisco.getPort();
+        String pass = switchCisco.getPass();
+        JSch jsch = new JSch();
+
+        try {
+            Session session = jsch.getSession(user, host, port);
+            UserInfo ui = new SUserInfo(pass, null);
+
+            session.setUserInfo(ui);
+            session.setPassword(pass);
+            session.connect();
+
+            ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
+            InputStream in = channelExec.getInputStream();
+
+            channelExec.setCommand(pingcommand);
             channelExec.connect();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -46,13 +89,6 @@ public class SSHRequest {
             e.printStackTrace();
         }
 
-    }
-
-    public void pingCommand(String ip, String switchFile) {
-        String pingcommand = "ping ";
-        JSch jsch = new JSch();
-        
-        
     }
 
 }

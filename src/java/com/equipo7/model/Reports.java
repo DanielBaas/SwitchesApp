@@ -77,11 +77,12 @@ public class Reports {
     }
     
     private boolean getSwitchAvailability(String ip) {
-        final String switchFile = "ping.txt";
+        final String pingFile = "ping.txt";
         final SSHRequest request = new SSHRequest();
         boolean available = true;
+        SwitchCisco switchCisco = new SwitchCisco();
             
-        request.pingCommand(ip, switchFile);
+        request.pingCommand(ip, pingFile, switchCisco);
         
         return available;
     }
