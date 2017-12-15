@@ -160,4 +160,8 @@ public class SwitchInterface {
         this.switchCisco = switchCisco;
     }
 
+    public String toString() {
+        return interfaceType + "_" + ip + "_" + okStatus + method + "_" + status + "_" + protocol + "_" + switchCisco;
+    }
+    
 }

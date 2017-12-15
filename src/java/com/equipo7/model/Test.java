@@ -14,6 +14,7 @@ public class Test {
 
         switchCisco = report.requestSwitchInfo(switchCisco);
         sw2 = report.requestSwitchInfo(sw2);
+        
         dao.insertSwitch(switchCisco);
         dao.insertSwitch(sw2);
 

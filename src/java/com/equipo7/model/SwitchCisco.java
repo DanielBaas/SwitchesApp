@@ -136,11 +136,15 @@ public class SwitchCisco {
         return version;
     }
 
-    public void setAvailability(boolean availability) {
+    public void setIsAvailability(boolean availability) {
         this.isAvailable = availability;
     }
 
-    public boolean isAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
+    }
+    
+    public String toString() {
+        return user + "_" + host + "_" + port + "_" + pass + "_" + software + "_" + version + "_" + isAvailable;
     }
 }

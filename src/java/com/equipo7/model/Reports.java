@@ -127,7 +127,7 @@ public class Reports {
 
     public SwitchCisco requestSwitchInfo(SwitchCisco switchCisco) {
         switchCisco = showVersion(switchCisco);
-        switchCisco.setAvailability(getSwitchAvailability(switchCisco.getHost()));
+        switchCisco.setIsAvailability(getSwitchAvailability(switchCisco.getHost()));
 
         return switchCisco;
     }

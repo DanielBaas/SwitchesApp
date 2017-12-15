@@ -29,7 +29,7 @@ public class SwitchDao {
             if (findSwitchByIP(switchCisco.getHost()) == null) {
                 dao.createIfNotExists(switchCisco);
             }
-
+            
             connectionSource.close();
         } catch (SQLException ex) {
             Logger.getLogger(SwitchDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,7 +68,7 @@ public class SwitchDao {
             updateBuilder.updateColumnValue("pass", switchCisco.getPass());
             updateBuilder.updateColumnValue("software", switchCisco.getSoftware());
             updateBuilder.updateColumnValue("version", switchCisco.getVersion());
-            updateBuilder.updateColumnValue("isAvailable", switchCisco.isAvailable());
+            updateBuilder.updateColumnValue("isAvailable", switchCisco.getIsAvailable());
 
             updateBuilder.where().eq("pk", switchCisco.getPk());
             updateBuilder.update();

@@ -4,10 +4,10 @@ import com.equipo7.model.Reports;
 import com.equipo7.model.SwitchCisco;
 import com.equipo7.model.SwitchDao;
 import com.equipo7.model.SwitchInterface;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,8 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("addSwitch.htm")
 public class AddSwitchController {
-    
-    private JdbcTemplate jdbcTemplate;
     
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView form() {
@@ -40,20 +38,25 @@ public class AddSwitchController {
             SessionStatus status
         ) throws ParseException 
     {   
+        SwitchDao dao = new SwitchDao();
+        SwitchCisco sw = new SwitchCisco();
         Reports report = new Reports();
         List<SwitchInterface> interfaces = new ArrayList<SwitchInterface>();
-        SwitchDao dao = new SwitchDao();
         
-        switchCisco = report.requestSwitchInfo(switchCisco);
         dao.insertSwitch(switchCisco);
         
-        interfaces = report.requestSwitchInterfacesInfo(switchCisco);
+        sw = dao.findSwitchByIP(switchCisco.getHost());
+        sw = report.requestSwitchInfo(sw);
         
+        dao.updateSwitch(sw);
+        
+        interfaces = report.requestSwitchInterfacesInfo(sw);
+
         for (SwitchInterface si : interfaces) {
             dao.insertInterface(si);
         }
         
         return new ModelAndView("redirect:/switches.htm");
     }
-    
+            
 }
