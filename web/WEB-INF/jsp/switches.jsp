@@ -67,6 +67,29 @@
                         </table>
                     </div>
                 </div>
+                        <div class="container">
+                    <div class="row" style="padding-top: 3%;" align="left">
+                        
+                        <div class="col-sm-4">
+                            <form method="POST" name="form1" action ="GraficaInterfaces.jps" target="black">
+                            <input type="submit" value="Grafica de porcentaje de Interfaces" name="interfacesGenerales">
+                            </form>
+                            
+                        </div>                        
+                        <div class="col-sm-4">
+                            <form method="POST" name="form2" action ="GraficaInterfacesVirtuales.jps" target="blue">
+                            <input type="submit" value="Grafica de interfaces Virtuales" name="interfacesVirtuales">
+                            </form>
+                            
+                        </div> 
+                        <div class="col-sm-4">
+                            <form method="POST" name="form3" action ="GraficaInterfacesFisicas.jps" target="blue">
+                            <input type="submit" value="Grafica de Interfaces Fisicas" name="interfacesFisicas">
+                            </form>
+                            
+                        </div>  
+                    </div>
+                </div>
             </div>
         </div>
     </body>
