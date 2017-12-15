@@ -26,6 +26,7 @@
                 <prop key="editSwitch.htm">editSwitchController</prop>
                 <prop key="deleteSwitch.htm">deleteSwitchController</prop>
                 <prop key="refresh.htm">refreshController</prop>
+                
             </props>
         </property>
     </bean>
