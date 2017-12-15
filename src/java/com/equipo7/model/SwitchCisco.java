@@ -27,7 +27,7 @@ public class SwitchCisco {
     private String version;
     @DatabaseField(canBeNull = true, columnName = "isAvailable")
     private boolean isAvailable;
-    
+
     public SwitchCisco() {
     }
 
@@ -41,7 +41,7 @@ public class SwitchCisco {
         this.version = "";
         this.isAvailable = true;
     }
-    
+
     public SwitchCisco(String user, String host, int port, String pass) {
         this.user = user;
         this.host = host;

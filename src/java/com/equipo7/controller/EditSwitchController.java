@@ -1,14 +1,9 @@
 package com.equipo7.controller;
 
-import com.equipo7.model.DBConnection;
 import com.equipo7.model.SwitchCisco;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.equipo7.model.SwitchDao;
 import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +12,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 public class EditSwitchController {
-    
-    private JdbcTemplate jdbcTemplate;
-    
-    public EditSwitchController() {
-        DBConnection connection = new DBConnection();
-        this.jdbcTemplate = new JdbcTemplate(connection.connect());
-    }
     
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView form(HttpServletRequest request) {
@@ -53,39 +41,21 @@ public class EditSwitchController {
         ) throws ParseException 
     {   
         int switchId = Integer.parseInt(request.getParameter("id"));
+        SwitchDao dao = new SwitchDao();
         
-        this.jdbcTemplate.update("update SwitchCisco set "
-                + "user=?, "
-                + "host=?, "
-                + "port=?, "
-                + "pass=? "
-                + "where "
-                + "pk=? ",
-                switchCisco.getUser(),
-                switchCisco.getHost(),
-                switchCisco.getPort(),
-                switchCisco.getPass(),
-                switchId);
+        switchCisco.setPk(switchId);
+        dao.updateSwitch(switchCisco);
         
         return new ModelAndView("redirect:/switches.htm");
     }
     
     public SwitchCisco selectSwitch(int switchid) {
-        final SwitchCisco switchCisco = new SwitchCisco();
-        String query = "select * from SwitchCisco where pk='" + switchid + "'";
+        SwitchCisco switchCisco = new SwitchCisco();
+        SwitchDao dao = new SwitchDao();
         
-        return (SwitchCisco) this.jdbcTemplate.query(query, new ResultSetExtractor<SwitchCisco>() {
-            @Override
-            public SwitchCisco extractData(ResultSet rs) throws SQLException, DataAccessException {
-                if (rs.next()) {
-                    switchCisco.setUser(rs.getString("user"));
-                    switchCisco.setHost(rs.getString("host"));
-                    switchCisco.setPort(Integer.valueOf(rs.getString("port")));
-                    switchCisco.setPass(rs.getString("pass"));
-                }
-                
-                return switchCisco;
-            }          
-        });
+        switchCisco = dao.findSwitchByID(switchid);
+        
+        return switchCisco;
     }
+    
 }

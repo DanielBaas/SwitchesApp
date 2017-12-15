@@ -1,6 +1,5 @@
 package com.equipo7.controller;
 
-import com.equipo7.model.DBConnection;
 import com.equipo7.model.Reports;
 import com.equipo7.model.SwitchCisco;
 import com.equipo7.model.SwitchDao;
@@ -22,11 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class AddSwitchController {
     
     private JdbcTemplate jdbcTemplate;
-    
-    public AddSwitchController() {
-        DBConnection connection = new DBConnection();
-        this.jdbcTemplate = new JdbcTemplate(connection.connect());
-    }
     
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView form() {
